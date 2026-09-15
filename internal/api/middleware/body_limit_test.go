@@ -57,9 +57,9 @@ func TestMaxBodyBytesReturns413WhenStreamExceedsLimit(t *testing.T) {
 		}
 		var maxErr *http.MaxBytesError
 		if !errors.As(err, &maxErr) {
-			// MaxBytesReader may wrap; still expect failure
-			t.Logf("read error (ok): %v", err)
+			t.Fatalf("read error = %v, want *http.MaxBytesError", err)
 		}
+		http.Error(w, `{"error":"request body too large"}`, http.StatusRequestEntityTooLarge)
 	}))
 
 	body := strings.Repeat("y", 128)

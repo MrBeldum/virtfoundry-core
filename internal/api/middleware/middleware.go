@@ -8,8 +8,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/virtfoundry/core/internal/pkg/logger"
 	"github.com/google/uuid"
+	"github.com/virtfoundry/core/internal/pkg/logger"
 	"go.uber.org/zap"
 )
 
@@ -55,7 +55,6 @@ func CORS(next http.Handler) http.Handler {
 		next.ServeHTTP(w, r)
 	})
 }
-
 
 // DefaultMaxBodyBytes is the default request body size limit (~1MiB).
 const DefaultMaxBodyBytes int64 = 1 << 20
